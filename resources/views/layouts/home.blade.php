@@ -37,7 +37,7 @@
             </form>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#">Login<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Sign-In <i class="fas fa-sign-in-alt"></i><span class="sr-only">(current)</span></a>
               </li>
             </ul>
           </div>
@@ -45,23 +45,9 @@
       </div>
     </div>
 
-    <div class="container pt-5">
-      <div class="col-lg-3">
-        <div class="area-block px-4 py-3">
-          <p class="font-size-20">Trending Tags</p>
-          <hr />
-          <ul class="popular-tags-list">
-            <a class="popular-tags-item">Spice</a>
-            <a class="popular-tags-item">Cats</a>
-            <a class="popular-tags-item">Funny</a>
-            <a class="popular-tags-item">Music</a>
-            <a class="popular-tags-item">Shopping Carts</a>
-            <a class="popular-tags-item">Food</a>
-            <a class="popular-tags-item">Video Games</a>
-            <a class="popular-tags-item">Integrity</a>
-          </ul>
-        </div>
-      </div>
-    </div>
+		<div class="container pt-5">
+			@yield('content')
+		</div>
+
   </body>
 </html>
