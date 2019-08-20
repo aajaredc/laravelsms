@@ -11,9 +11,13 @@
 |
 */
 
+Route::group(['middleware' => ['auth']], function() {
+  // Only users who are signed in may enter...
+  Route::get('/newpost', 'PagesController@newpost');
+  Route::post('/newpost', 'PostsController@upload');
+});
+
 Route::get('/', 'PagesController@board');
-Route::get('/newpost', 'PagesController@newpost');
-Route::post('/newpost', 'PostsController@upload');
 
 Auth::routes();
 

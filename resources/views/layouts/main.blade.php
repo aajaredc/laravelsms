@@ -8,6 +8,8 @@
 		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Website of Jared Caruso">
 
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+
 		<!-- Scripts and Libs -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -19,7 +21,14 @@
 		<link type="text/css" href="{{ URL::asset('css/main.css') }}" rel="stylesheet">
 
 		<!-- Font -->
-		 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+		<!-- Scripts -->
+		<script src="{{ asset('js/tagsinput.js') }}" defer></script>
+
+		<!-- Styles -->
+		<link href="{{ asset('css/tagsinput.css') }}" rel="stylesheet">
+
 	</head>
 
   <body>
