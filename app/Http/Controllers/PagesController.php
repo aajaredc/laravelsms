@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function home()
+    public function board()
     {
-      $contents = [
-        'One',
-        'And a two',
-        'And a three four five'
-      ];
+      $posts = \App\Post::all();
 
-        return view('welcome', [
-          'contents' => $contents
-        ]);
+      return view('board', [
+        'posts' => $posts
+      ]);
+    }
+
+    public function newpost() {
+      return view('newpost');
     }
 
     public function contact()

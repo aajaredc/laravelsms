@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
-Route::get('/contact', 'PagesController@contact');
-Route::get('/blade', 'PagesController@blade');
+Route::get('/', 'PagesController@board');
+Route::get('/newpost', 'PagesController@newpost');
 
 Auth::routes();
 

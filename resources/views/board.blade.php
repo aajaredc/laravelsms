@@ -1,4 +1,4 @@
-@extends('layouts/board')
+@extends('layouts/main')
 
 @section('title')
 
@@ -125,4 +125,8 @@
     </div>
   </div>
 
+  @foreach ($posts as $post)
+    {{ $post->image }}
+  @endforeach
+  
 @endsection

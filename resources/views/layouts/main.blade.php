@@ -33,18 +33,13 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" class="col-lg-7 mr-auto ml-auto form-inline my-2 my-lg-0">
-              <input style="width: 100%;" type="text" class="form-control" placeholder="Search" aria-label="" aria-describedby="basic-addon1">
+              <input style="width: 96%;" type="text" class="form-control" placeholder="Search" aria-label="" aria-describedby="basic-addon1">
             </form>
             <ul class="navbar-nav">
 							@guest
 									<li class="nav-item">
 											<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
 									</li>
-									@if (Route::has('register'))
-											<li class="nav-item">
-													<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-											</li>
-									@endif
 							@else
 									<li class="nav-item dropdown">
 											<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
