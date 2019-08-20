@@ -13,6 +13,7 @@
 
 Route::get('/', 'PagesController@board');
 Route::get('/newpost', 'PagesController@newpost');
+Route::post('/newpost', 'PostsController@upload');
 
 Auth::routes();
 
