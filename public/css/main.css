@@ -46,11 +46,22 @@ body {
 .board-metaactions-item {
   display: flex;
   justify-content: center;
-  opacity: 0.6;
+  opacity: 0.4;
+}
+
+.board-metaactions-item-clicked {
+  display: flex;
+  justify-content: center;
+  opacity: 1;
 }
 
 .board-metaactions-item:hover {
   opacity: 1.0;
+  cursor: pointer;
+}
+
+.board-metaactions-item-clicked:hover {
+	/* opacity: 0.6; */
   cursor: pointer;
 }
 

@@ -39,20 +39,25 @@
                   <a class="mr-2">
                     <img class="board-metapanel-userimage" src="{{ URL::asset('images/kiko-1.png') }}" />
                   </a>
-                  <a class="mr-2">Jared</a>
+                  <a class="mr-2">{{ DB::table('users')->where('id', $post->user_id)->value('username') }}</a>
                   <span>4h</span>
                 </div>
                 <div class="col-12 col-md-7 d-flex align-items-center">
                   <div class="board-metaactions w-100 mt-3 mt-md-0">
                     <ul class="float-md-right float-sm-left">
                       <li>
-                        <a class="board-metaactions-item mr-3"><i class="fas fa-thumbs-up font-size-22 mr-1"></i>13.2k</a>
+                        @php
+                          if (isset($_POST['action'])) {
+                            echo 'hi';
+                          }
+                        @endphp
+                        <a id="like" class="board-metaactions-item mr-3" data-id="{{ $post->id }}"><i class="fas fa-thumbs-up font-size-22 mr-1"></i></a>
                       </li>
                       <li>
-                        <a class="board-metaactions-item mr-3"><i class="fas fa-thumbs-down font-size-22 mr-1"></i>12.4k</a>
+                        <a id="dislike" class="board-metaactions-item mr-3" data-id="{{ $post->id }}"><i class="fas fa-thumbs-down font-size-22 mr-1"></i></a>
                       </li>
                       <li>
-                        <a class="board-metaactions-item"><i class="fas fa-comments font-size-22 mr-1"></i>12.4k</a>
+                        <a id="comment" class="board-metaactions-item" data-id="{{ $post->id }}"><i class="fas fa-comments font-size-22 mr-1"></i>12.4k</a>
                       </li>
                     </ul>
                   </div>
@@ -61,13 +66,12 @@
               <div class="row">
                 <div class="col-12 mt-3">
                   <div class="board-metatags">
-                    <span class="mr-3">Tags:</span>
-                    <ul>
-                      <li><a class="board-metatags-item mr-2">hi</a></li>
-                      <li><a class="board-metatags-item mr-2">hi</a></li>
-                      <li><a class="board-metatags-item mr-2">hi</a></li>
-                      <li><a class="board-metatags-item mr-2">hi</a></li>
-                      <li><a class="board-metatags-item mr-2">hi</a></li>
+                    <span class="mr-3">Tags:</span
+                    ><ul>
+                      @php
+                        $tags = explode(',', $post->tags)
+                      @endphp
+                      @foreach ($tags as $tag)<li><a class="board-metatags-item mr-2">{{ $tag }}</a></li>@endforeach
                     </ul>
                   </div>
                 </div>
@@ -76,54 +80,6 @@
           </div>
         </div>
       @endforeach
-
-      <div class="area-block">
-        <div class="board-item">
-          <img class="board-image" src="https://raw.githubusercontent.com/aajaredc/PokeWalkerSimulator/master/screenshots/PokeWalkerSimulator_Setup.PNG" alt="test"/>
-          <div class="board-metapanel">
-            <div class="row">
-              <div class="col-12 col-md-5">
-                <a class="mr-2">
-                  <img class="board-metapanel-userimage" src="{{ URL::asset('images/kiko-1.png') }}" />
-                </a>
-                <a class="mr-2">Jared</a>
-                <span>4h</span>
-              </div>
-              <div class="col-12 col-md-7 d-flex align-items-center">
-                <div class="board-metaactions w-100 mt-3 mt-md-0">
-                  <ul class="float-md-right float-sm-left">
-                    <li>
-                      <a class="board-metaactions-item mr-3"><i class="fas fa-thumbs-up font-size-22 mr-1"></i>13.2k</a>
-                    </li>
-                    <li>
-                      <a class="board-metaactions-item mr-3"><i class="fas fa-thumbs-down font-size-22 mr-1"></i>12.4k</a>
-                    </li>
-                    <li>
-                      <a class="board-metaactions-item"><i class="fas fa-comments font-size-22 mr-1"></i>12.4k</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 mt-3">
-                <div class="board-metatags">
-                  <span class="mr-3">Tags:</span>
-                  <ul>
-                    <li><a class="board-metatags-item mr-2">hi</a></li>
-                    <li><a class="board-metatags-item mr-2">hi</a></li>
-                    <li><a class="board-metatags-item mr-2">hi</a></li>
-                    <li><a class="board-metatags-item mr-2">hi</a></li>
-                    <li><a class="board-metatags-item mr-2">hi</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
     </div>
   </div>
 
@@ -131,4 +87,8 @@
     {{ $post->image }}
   @endforeach
 
+@endsection
+
+@section('additionalscripts')
+  <script src="{{ asset('js/rating.js') }}"></script>
 @endsection

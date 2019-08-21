@@ -9,6 +9,7 @@ class PagesController extends Controller
     public function board()
     {
       $posts = \App\Post::all();
+      $users = \App\User::all();
 
       return view('board', [
         'posts' => $posts

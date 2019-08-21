@@ -13,12 +13,20 @@
 
 Route::group(['middleware' => ['auth']], function() {
   // Only users who are signed in may enter...
-  Route::get('/newpost', 'PagesController@newpost');
-  Route::post('/newpost', 'PostsController@upload');
+  Route::get('/post/new', 'PagesController@newpost');
+  Route::post('/post/new', 'PostsController@upload');
+
+  Route::post('/ratepost', 'PostsController@rate');
+  Route::get('/ratepost', 'PagesController@board');
+  Route::post('/ajaxRequest', 'PostsController@rate')->name('ajaxRequest');
 });
 
 Route::get('/', 'PagesController@board');
+Route::get('/home', 'PagesController@board');
+Route::get('/board', 'PagesController@board');
+
+Route::get('/post/{id}', 'PostsController@show');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/hometwo', 'HomeController@index')->name('home');
