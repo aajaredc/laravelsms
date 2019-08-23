@@ -25,6 +25,12 @@
 
 		<!-- Scripts -->
 		<script src="{{ asset('js/tagsinput.js') }}" defer></script>
+		<script src="{{ asset('js/jquery.timeago.js') }}" defer></script>
+		<script type="text/javascript">
+		 	jQuery(document).ready(function() {
+		   	$("time.timeago").timeago();
+		 	});
+		</script>
 
 		<!-- Styles -->
 		<link href="{{ asset('css/tagsinput.css') }}" rel="stylesheet">

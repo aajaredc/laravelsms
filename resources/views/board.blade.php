@@ -1,13 +1,6 @@
 @extends('layouts/main')
 
-@section('title')
-
-  <hi>Welcome to Laravel</hi>
-
-@endsection
-
 @section('content')
-
 
   <div class="row">
     <!-- Popular tags -->
@@ -40,7 +33,7 @@
                     <img class="board-metapanel-userimage" src="{{ URL::asset('images/kiko-1.png') }}" />
                   </a>
                   <a class="mr-2">{{ DB::table('users')->where('id', $post->user_id)->value('username') }}</a>
-                  <span>4h</span>
+                  <span id="postedTimeAgo"><time class="timeago" datetime="{{ date(DATE_ISO8601, strtotime($post->created_at)) }}"></time></span>
                 </div>
                 <div class="col-12 col-md-7 d-flex align-items-center">
                   <div class="board-metaactions w-100 mt-3 mt-md-0">
