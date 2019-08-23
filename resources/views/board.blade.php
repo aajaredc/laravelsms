@@ -46,15 +46,30 @@
                   <div class="board-metaactions w-100 mt-3 mt-md-0">
                     <ul class="float-md-right float-sm-left">
                       <li>
-                        @php
-                          if (isset($_POST['action'])) {
-                            echo 'hi';
-                          }
-                        @endphp
-                        <a id="like" class="board-metaactions-item mr-3" data-id="{{ $post->id }}"><i class="fas fa-thumbs-up font-size-22 mr-1"></i></a>
+                        <a id="like" class="
+                          @php
+                              if (is_null(DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 1)->first())) {
+                                echo 'board-metaactions-item';
+                              } else {
+                                echo 'board-metaactions-item-clicked';
+                              }
+                          @endphp
+                          mr-3" data-id="{{ $post->id }}"><i class="fas fa-thumbs-up font-size-22 mr-1"></i>
+                          {{ DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 1)->count() }}
+                        </a>
                       </li>
                       <li>
-                        <a id="dislike" class="board-metaactions-item mr-3" data-id="{{ $post->id }}"><i class="fas fa-thumbs-down font-size-22 mr-1"></i></a>
+                        <a id="dislike" class="
+                          @php
+                              if (is_null(DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 0)->first())) {
+                                echo 'board-metaactions-item';
+                              } else {
+                                echo 'board-metaactions-item-clicked';
+                              }
+                          @endphp
+                          mr-3" data-id="{{ $post->id }}"><i class="fas fa-thumbs-up font-size-22 mr-1"></i>
+                          {{ DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 0)->count() }}
+                        </a>
                       </li>
                       <li>
                         <a id="comment" class="board-metaactions-item" data-id="{{ $post->id }}"><i class="fas fa-comments font-size-22 mr-1"></i>12.4k</a>
@@ -82,10 +97,6 @@
       @endforeach
     </div>
   </div>
-
-  @foreach ($posts as $post)
-    {{ $post->image }}
-  @endforeach
 
 @endsection
 

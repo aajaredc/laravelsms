@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\PostRating;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -41,25 +43,93 @@ class PostsController extends Controller
 
   public function rate(Request $request)
   {
+    request()->validate([
+      'post_id' => 'required',
+      'action' => 'required'
+    ]);
 
-    $post = Post::find($request->id);
+    $postid = $request->input('post_id');
+    $action = $request->input('action');
+    $userid = Auth::user()->id;
 
-    echo 'hi';
+    switch ($action) {
+      case 'like':
+        if ($this->hasrated($postid, $userid, 0) == true) {
+          DB::table('post_ratings')
+            ->where('post_id', $postid)
+            ->where('user_id', $userid)
+            ->update(['rating' => 1]);
+        }
+        else {
+          $rating = new PostRating();
+          $rating->post_id = $postid;
+          $rating->user_id = $userid;
+          $rating->rating = true;
+          $rating->save();
+        }
+        break;
 
-    $response = auth()->user();
+      case 'dislike':
+        if ($this->hasrated($postid, $userid, 1) == true) {
+          DB::table('post_ratings')
+            ->where('post_id', $postid)
+            ->where('user_id', $userid)
+            ->update(['rating' => 0]);
+        }
+        else {
+          $rating = new PostRating();
+          $rating->post_id = $postid;
+          $rating->user_id = $userid;
+          $rating->rating = false;
+          $rating->save();
+        }
+        break;
 
+      case 'unlike':
+        if ($this->hasrated($postid, $userid, 1) == true) {
+          DB::table('post_ratings')
+            ->where('post_id', $postid)
+            ->where('user_id', $userid)
+            ->delete();
+        }
+        break;
+
+      case 'undislike':
+        if ($this->hasrated($postid, $userid, 0) == true) {
+          DB::table('post_ratings')
+            ->where('post_id', $postid)
+            ->where('user_id', $userid)
+            ->delete();
+        }
+        break;
+
+      default:
+        return null;
+        break;
+    }
 
     return null;
 
-  }
-
-  private function likePost()
-  {
 
   }
 
-  private function dislikePost()
+  /**
+  * Checks if the user has rated a post w/ a certain rating
+  */
+  private function hasrated($postid, $userid, $rating)
   {
+    $rows = DB::table('post_ratings')
+              ->where('post_id', $postid)
+              ->where('user_id', $userid)
+              ->where('rating', $rating)
+              ->get()->count();
 
+
+    if ($rows) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

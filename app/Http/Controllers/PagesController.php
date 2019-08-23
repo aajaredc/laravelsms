@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use App\PostRating;
+use App\User;
+use DB;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
     public function board()
     {
-      $posts = \App\Post::all();
-      $users = \App\User::all();
+      $users = User::all();
+      $posts = Post::all();
 
       return view('board', [
         'posts' => $posts
