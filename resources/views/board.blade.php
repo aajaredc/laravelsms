@@ -55,7 +55,7 @@
                               }
                           @endphp
                           mr-3" data-id="{{ $post->id }}"><i class="fas fa-thumbs-up font-size-22 mr-1"></i>
-                          {{ DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 1)->count() }}
+                          <span id="numberOfLikes">{{ DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 1)->count() }}</span>
                         </a>
                       </li>
                       <li>
@@ -67,8 +67,8 @@
                                 echo 'board-metaactions-item-clicked';
                               }
                           @endphp
-                          mr-3" data-id="{{ $post->id }}"><i class="fas fa-thumbs-up font-size-22 mr-1"></i>
-                          {{ DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 0)->count() }}
+                          mr-3" data-id="{{ $post->id }}"><i class="fas fa-thumbs-down font-size-22 mr-1"></i>
+                          <span id="numberOfDislikes">{{ DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 0)->count() }}</span>
                         </a>
                       </li>
                       <li>
