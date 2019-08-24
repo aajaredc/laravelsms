@@ -22,9 +22,9 @@
     </div> --}}
     <!-- Area with the pictures ("board") -->
     <div class="col-lg-6 offset-md-3">
-      <div id="board-posts">
+      <div class="infinite-scroll">
         @foreach ($posts as $post)
-          <div href="board-post" class="board-post">
+          <div class="board-post">
             <div class="area-block mb-4">
               <div class="board-item">
                 <img class="board-image" src="{{ URL::asset($post->path) }}" alt="test"/>

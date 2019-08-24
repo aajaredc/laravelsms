@@ -13,7 +13,7 @@ class PagesController extends Controller
     public function board()
     {
       $users = User::all();
-      $posts = Post::all();
+      $posts = Post::paginate(1);
 
       return view('board', [
         'posts' => $posts
