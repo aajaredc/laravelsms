@@ -93,6 +93,25 @@ body {
   height: 32px;
 }
 
+.board-metapanel-comment-block {
+
+}
+
+.board-metapanel-comment-block-body {
+
+}
+
+.opacity-hover {
+	opacity: 0.6;
+}
+.opacity-hover:hover {
+	opacity: 1.0;
+	cursor: pointer;
+}
+.opacity-nohover {
+	opacity: 0.6;
+}
+
 .font-size-20 {
   font-size: 20px;
 }

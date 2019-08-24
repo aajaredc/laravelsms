@@ -25,7 +25,7 @@ Route::get('/', 'PagesController@board');
 Route::get('/home', 'PagesController@board');
 Route::get('/board', 'PagesController@board');
 
-Route::get('/post/{id}', 'PostsController@show');
+Route::get('/post/{id}', 'PostsController@show')->name('showpost');
 
 Auth::routes();
 

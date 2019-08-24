@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\PostRating;
+use App\PostComments;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -15,7 +16,9 @@ class PostsController extends Controller
   public function show($id)
   {
     $post = Post::where('id', $id)->first();
-    return view('showpost', compact('post'));
+    $comments = PostComments::where('post_id', $id)->get();
+
+    return view('showpost', compact('post', 'comments'));
   }
 
 
@@ -39,6 +42,9 @@ class PostsController extends Controller
     $post->tags = $request->input('tags');
     $post->path = $path;
     $post->save();
+    $post_id = $post->id;
+
+    return redirect()->route('showpost', ['id' => $post_id]);
   }
 
   public function rate(Request $request)

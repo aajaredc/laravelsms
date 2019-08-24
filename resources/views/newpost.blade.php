@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('New Post') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/newpost" enctype="multipart/form-data">
+                        <form method="POST" action="/post/new" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
