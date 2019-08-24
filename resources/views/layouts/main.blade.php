@@ -31,6 +31,7 @@
 		   	$("time.timeago").timeago();
 		 	});
 		</script>
+		<script src="{{ asset('js/jquery.jscroll.js') }}" defer></script>
 
 		<!-- Styles -->
 		<link href="{{ asset('css/tagsinput.css') }}" rel="stylesheet">
