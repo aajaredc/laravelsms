@@ -26,6 +26,7 @@ Route::get('/home', 'PagesController@board');
 Route::get('/board', 'PagesController@board');
 
 Route::get('/post/{id}', 'PostsController@show')->name('showpost');
+Route::get('/user/{id}', 'ProfilesController@show')->name('showprofile');
 
 Auth::routes();
 

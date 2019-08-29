@@ -1,30 +1,29 @@
 @extends('layouts/main')
 
 @section('content')
-
-  <div class="row">
-    <!-- Popular tags -->
-    {{-- <div class="col-lg-3">
-      <div class="area-block px-4 py-3">
-        <p class="font-size-20">Popular Tags</p>
-        <hr />
-        <ul class="popular-tags-list">
-          <a class="popular-tags-item">Spice</a>
-          <a class="popular-tags-item">Cats</a>
-          <a class="popular-tags-item">Funny</a>
-          <a class="popular-tags-item">Music</a>
-          <a class="popular-tags-item">Shopping Carts</a>
-          <a class="popular-tags-item">Food</a>
-          <a class="popular-tags-item">Video Games</a>
-          <a class="popular-tags-item">Integrity</a>
-        </ul>
-      </div>
-    </div> --}}
-    <!-- Area with the pictures ("board") -->
-    <div class="col-lg-6 offset-md-3">
-      <div class="infinite-scroll">
-        @foreach ($posts as $post)
-          <div class="board-post">
+  <!-- Popular tags -->
+  {{-- <div class="col-lg-3">
+    <div class="area-block px-4 py-3">
+      <p class="font-size-20">Popular Tags</p>
+      <hr />
+      <ul class="popular-tags-list">
+        <a class="popular-tags-item">Spice</a>
+        <a class="popular-tags-item">Cats</a>
+        <a class="popular-tags-item">Funny</a>
+        <a class="popular-tags-item">Music</a>
+        <a class="popular-tags-item">Shopping Carts</a>
+        <a class="popular-tags-item">Food</a>
+        <a class="popular-tags-item">Video Games</a>
+        <a class="popular-tags-item">Integrity</a>
+      </ul>
+    </div>
+  </div> --}}
+  <!-- Area with the pictures ("board") -->
+  <div class="col-lg-6 offset-md-3">
+    <div class="infinite-scroll">
+      @foreach ($posts as $post)
+        <div class="board-post">
+          <a href="/post/{{ $post->id }}">
             <div class="area-block mb-4">
               <div class="board-item">
                 <img class="board-image" src="{{ URL::asset($post->path) }}" alt="test"/>
@@ -67,7 +66,7 @@
                                 @endphp
                               @else
                                 @php
-                                    if (is_null(DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 1)->first())) {
+                                    if (is_null(DB::table('post_ratings')->where('post_id', $post->id)->where('rating', 0)->first())) {
                                       echo 'board-metaactions-item';
                                     } else {
                                       echo 'board-metaactions-item-clicked';
@@ -104,10 +103,10 @@
                 </div>
               </div>
             </div>
-          </div>
-        @endforeach
-        {{ $posts->links() }}
-      </div>
+          </a>
+        </div>
+      @endforeach
+      {{ $posts->links() }}
     </div>
   </div>
 
